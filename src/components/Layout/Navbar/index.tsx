@@ -11,35 +11,42 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import GlobalContext from "../../../context";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
+  // const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+  //   null
+  // );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const { state, dispatch } = React.useContext(GlobalContext);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  // const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  const handleDrawer = () => {
+    dispatch({ type: "DRAWER_HANDLER" });
+    console.log(state.drawerStatus)
+  };
+
   return (
-    <AppBar position="static" color="secondary">
-      <Container maxWidth="xl">
+    <AppBar position="static" color="secondary" sx={{ minHeight: "10%" }}>
+      <Container maxWidth="xl" sx={{ my: "auto" }}>
         <Toolbar
           disableGutters
           sx={{ display: "flex", justifyContent: "space-between" }}
@@ -50,7 +57,7 @@ function Navbar() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              onClick={handleDrawer}
               color="inherit"
             >
               <MenuIcon />

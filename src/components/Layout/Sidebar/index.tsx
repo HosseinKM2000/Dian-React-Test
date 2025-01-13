@@ -2,6 +2,7 @@ import ChecklistRtlIcon from "@mui/icons-material/ChecklistRtl";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import RoofingIcon from "@mui/icons-material/Roofing";
+import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -12,6 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 import * as React from "react";
 import { NavLink } from "react-router";
 import GlobalContext from "../../../context";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const drawerWidth = 240;
 
@@ -83,6 +85,7 @@ export default function Sidebar() {
     { title: "Weather", link: "/weather", icon: CloudQueueIcon },
     { title: "Profile", link: "/profile", icon: ManageAccountsIcon },
   ];
+
   return (
     <Drawer
       sx={{
@@ -93,6 +96,7 @@ export default function Sidebar() {
           boxSizing: "border-box",
           position: "relative",
           minHeight: "90vh",
+          zIndex: 5,
         },
       }}
       variant="persistent"
@@ -110,7 +114,7 @@ export default function Sidebar() {
               <NavLink
                 to={item.link}
                 style={({ isActive }) => ({
-                  color: isActive ? "purple" : "black",
+                  color: isActive ? "aqua" : "inherit",
                   textDecoration: "none",
                 })}
               >
@@ -120,6 +124,24 @@ export default function Sidebar() {
           </ListItem>
         ))}
       </List>
+      <Box
+        position={"absolute"}
+        bottom={0}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        width={"100%"}
+        sx={{ display: { xs: "flex", md: "none" } }}
+        pb={1}
+      >
+        <Tooltip title="Account" sx={{ ml: 1 }}>
+          <IconButton>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Log out" sx={{ mr: 3 }}>
+          <LogoutIcon />
+        </Tooltip>
+      </Box>
     </Drawer>
   );
 }

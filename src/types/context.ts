@@ -1,12 +1,16 @@
 export type ContextType = {
   drawerStatus: boolean;
+  isDarkMode: boolean;
 };
 
-export interface drawerHandler {
+interface drawerHandler {
   type: "DRAWER_HANDLER";
 }
+interface themeSwitch {
+  type: "THEME_SWITCH";
+}
 
-export type ActionType = drawerHandler;
+export type ActionType = drawerHandler | themeSwitch;
 
 export type mainReducerType = (
   state: ContextType,

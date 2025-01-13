@@ -1,51 +1,30 @@
 import AdbIcon from "@mui/icons-material/Adb";
+import BedtimeIcon from "@mui/icons-material/Bedtime";
 import MenuIcon from "@mui/icons-material/Menu";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import GlobalContext from "../../../context";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
 function Navbar() {
-  // const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-  //   null
-  // );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
   const { state, dispatch } = React.useContext(GlobalContext);
 
-  // const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  // const handleCloseNavMenu = () => {
-  //   setAnchorElNav(null);
-  // };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const handleDrawer = () => {
-    dispatch({ type: "DRAWER_HANDLER" });
-    console.log(state.drawerStatus)
-  };
+  const handleDrawer = () => dispatch({ type: "DRAWER_HANDLER" });
+  const themeSwitch = () => dispatch({ type: "THEME_SWITCH" });
 
   return (
-    <AppBar position="static" color="secondary" sx={{ minHeight: "10%" }}>
+    <AppBar
+      position="relative"
+      color="inherit"
+      sx={{ minHeight: "10%", zIndex: 10 }}
+    >
       <Container maxWidth="xl" sx={{ my: "auto" }}>
         <Toolbar
           disableGutters
@@ -82,8 +61,11 @@ function Navbar() {
               Dian-React-Test
             </Typography>
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Box sx={{ display: "flex", alignItems: "center", columnGap: 2 }}>
+          <Box sx={{ flexGrow: 0, display: "flex" }}>
+            <Box
+              sx={{ display: "flex", alignItems: "center", columnGap: 2 }}
+              mr={3}
+            >
               <Box sx={{ display: { xs: "none", md: "block" } }}>
                 <Typography
                   variant="h6"
@@ -134,36 +116,27 @@ function Navbar() {
                   </Typography>
                 </Box>
               </Box>
-              <Tooltip title="user account">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
+              <Box sx={{ display: { xs: "none", md: "block" } }}>
+                <Tooltip title="Account">
+                  <IconButton sx={{ p: 0 }}>
+                    <Avatar
+                      alt="Remy Sharp"
+                      src="/static/images/avatar/2.jpg"
+                    />
+                  </IconButton>
+                </Tooltip>
+              </Box>
             </Box>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={themeSwitch}
+              color="inherit"
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              {state.isDarkMode ? <WbSunnyIcon /> : <BedtimeIcon />}
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>

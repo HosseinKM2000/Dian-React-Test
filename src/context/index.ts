@@ -4,6 +4,7 @@ import { ActionType, ContextType } from "../types/context";
 
 export const initialState: ContextType = {
   drawerStatus: true,
+  isDarkMode: true,
 };
 
 const GlobalContext = createContext<{

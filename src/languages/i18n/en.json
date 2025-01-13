@@ -1,0 +1,8 @@
+{
+    "navigation": {
+      "home": "Home",
+      "todoList": "Todo List",
+      "weather": "Weather",
+      "profile": "Profile"
+    }
+  }

@@ -2,7 +2,6 @@ import ChecklistRtlIcon from "@mui/icons-material/ChecklistRtl";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import RoofingIcon from "@mui/icons-material/Roofing";
-import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -11,11 +10,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 import GlobalContext from "../../../context";
-import LogoutIcon from "@mui/icons-material/Logout";
-
-const drawerWidth = 240;
 
 // const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
 //   open?: boolean;
@@ -79,24 +76,30 @@ const drawerWidth = 240;
 export default function Sidebar() {
   //   const theme = useTheme();
   const { state } = React.useContext(GlobalContext);
+  const { t } = useTranslation();
+
+//   const changeLanguage = (lang: string) => {
+//     i18n.changeLanguage(lang); // Change language dynamically
+//   };
+
   const navItems = [
-    { title: "Home", link: "/", icon: RoofingIcon },
-    { title: "Todo List", link: "/todo", icon: ChecklistRtlIcon },
-    { title: "Weather", link: "/weather", icon: CloudQueueIcon },
-    { title: "Profile", link: "/profile", icon: ManageAccountsIcon },
+    { title: "navigation.home", link: "/", icon: RoofingIcon },
+    { title: "navigation.todoList", link: "/todo", icon: ChecklistRtlIcon },
+    { title: "navigation.weather", link: "/weather", icon: CloudQueueIcon },
+    { title: "navigation.profile", link: "/profile", icon: ManageAccountsIcon },
   ];
 
   return (
     <Drawer
       sx={{
-        width: drawerWidth,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: drawerWidth,
+          width: "fit-content",
           boxSizing: "border-box",
           position: "relative",
           minHeight: "90vh",
           zIndex: 5,
+          paddingRight : 3
         },
       }}
       variant="persistent"
@@ -118,30 +121,14 @@ export default function Sidebar() {
                   textDecoration: "none",
                 })}
               >
-                <ListItemText primary={item.title} />
+                <ListItemText
+                  primary={t(item.title, { defaultValue: item.title })}
+                />
               </NavLink>
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-      <Box
-        position={"absolute"}
-        bottom={0}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-        width={"100%"}
-        sx={{ display: { xs: "flex", md: "none" } }}
-        pb={1}
-      >
-        <Tooltip title="Account" sx={{ ml: 1 }}>
-          <IconButton>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Log out" sx={{ mr: 3 }}>
-          <LogoutIcon />
-        </Tooltip>
-      </Box>
     </Drawer>
   );
 }

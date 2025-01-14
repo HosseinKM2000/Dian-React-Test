@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 import "./App.css";
 import Navbar from "./components/Layout/Navbar";
 import Sidebar from "./components/Layout/Sidebar";
-import { ThemeProvider } from "@mui/material";
+import { Box, ThemeProvider } from "@mui/material";
 import { useContext } from "react";
 import GlobalContext from "./context";
 import { darkTheme, lightTheme } from "./theme";
@@ -13,8 +13,10 @@ function App() {
     <ThemeProvider theme={state.isDarkMode ? darkTheme : lightTheme}>
       <main>
         <Navbar />
-        <Sidebar />
-        <Outlet />
+        <Box display={"flex"} position={"relative"}>
+          <Sidebar />
+          <Outlet />
+        </Box>
       </main>
     </ThemeProvider>
   );

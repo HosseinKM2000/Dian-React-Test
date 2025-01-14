@@ -94,7 +94,7 @@ export default function Sidebar() {
       sx={{
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: "fit-content",
+          width: "100%",
           boxSizing: "border-box",
           position: "relative",
           minHeight: "90vh",

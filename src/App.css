@@ -8,4 +8,18 @@ body {
 }
 main {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
+.MuiDrawer-root.MuiDrawer-docked.css-tsd4gk-MuiDrawer-docked {
+  width: fit-content;
+}
+
+@media (max-width: 900px) {
+  .MuiDrawer-root.MuiDrawer-docked.css-tsd4gk-MuiDrawer-docked {
+    position: absolute ;
+  }
+}
+
+

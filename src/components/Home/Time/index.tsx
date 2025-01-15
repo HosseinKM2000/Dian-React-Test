@@ -32,7 +32,7 @@ const Time = () => {
       <Typography variant="h3" fontWeight={600}>
         Good {currentTimeInfo?.timeOfDay}{" "}
       </Typography>
-      <Typography variant="h4">
+      <Typography variant="h5">
         {currentTimeInfo?.currentDate} {currentTimeInfo?.currentTime}
       </Typography>
     </>

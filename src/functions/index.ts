@@ -32,6 +32,5 @@ function getCurrentTimeInfo(): TimeInfoType {
   return { currentTime, currentDate, timeOfDay };
 }
 
-
 export { getCurrentTimeInfo };
 

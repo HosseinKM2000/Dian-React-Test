@@ -17,6 +17,10 @@ main {
   width: fit-content;
 }
 
+.scroll-none::-webkit-scrollbar {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .MuiDrawer-root.MuiDrawer-docked.css-tsd4gk-MuiDrawer-docked {
     position: absolute;

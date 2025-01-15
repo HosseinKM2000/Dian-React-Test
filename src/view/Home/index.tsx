@@ -46,7 +46,7 @@ const Home = () => {
         rowGap={2}
       >
         <Typography variant="subtitle1">
-          Please register your name for future visits .
+          Please Register Your Name For Future Visits .
         </Typography>
         <TextField
           id="name"

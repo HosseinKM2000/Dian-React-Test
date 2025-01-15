@@ -3,7 +3,7 @@ import { createContext, Dispatch } from "react";
 import { ActionType, ContextType } from "../types/context";
 
 export const initialState: ContextType = {
-  drawerStatus: true,
+  drawerStatus: window.screen.width > 900 ? true : false,
   isDarkMode: true,
 };
 

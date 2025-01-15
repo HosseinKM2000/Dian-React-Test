@@ -1,6 +1,6 @@
-import { TimeInfo } from "../types/functions";
+import { TimeInfoType } from "../types/functions";
 
-function getCurrentTimeInfo(): TimeInfo {
+function getCurrentTimeInfo(): TimeInfoType {
   const now = new Date();
 
   // Format the current time (HH:mm:ss)

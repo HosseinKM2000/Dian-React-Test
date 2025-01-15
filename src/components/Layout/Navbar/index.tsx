@@ -23,7 +23,7 @@ function Navbar() {
     <AppBar
       position="relative"
       color="inherit"
-      sx={{ minHeight: "10%", zIndex: 10 }}
+      sx={{ minHeight: "10%", zIndex: 10, width: "100%" }}
     >
       <Container maxWidth="xl" sx={{ my: "auto" }}>
         <Toolbar

@@ -10,7 +10,7 @@ import { darkTheme, lightTheme } from "./theme";
 function App() {
   const { state } = useContext(GlobalContext);
   return (
-    <ThemeProvider theme={state.isDarkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={state.user.isDark ? darkTheme : lightTheme}>
       <main>
         <Navbar />
         <Box display={"flex"} position={"relative"} height={"100%"}>

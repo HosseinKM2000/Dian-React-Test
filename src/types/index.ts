@@ -15,4 +15,11 @@ export interface TodoEditObjType {
   value?: string;
 }
 
+export interface ProfileFormType {
+  name: string;
+  age: string;
+  isPersian: boolean;
+  isDark: boolean;
+}
+
 export type SetTodosType = React.Dispatch<React.SetStateAction<TodoType[]>>;

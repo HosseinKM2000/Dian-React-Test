@@ -4,7 +4,12 @@ import { ActionType, ContextType } from "../types/context";
 
 export const initialState: ContextType = {
   drawerStatus: window.screen.width > 900 ? true : false,
-  isDarkMode: true,
+  user: {
+    name: "",
+    age: "",
+    isDark: false,
+    isPersian: false,
+  },
 };
 
 const GlobalContext = createContext<{

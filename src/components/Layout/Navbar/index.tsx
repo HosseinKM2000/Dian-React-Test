@@ -1,7 +1,5 @@
 import AdbIcon from "@mui/icons-material/Adb";
-import BedtimeIcon from "@mui/icons-material/Bedtime";
 import MenuIcon from "@mui/icons-material/Menu";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -15,9 +13,19 @@ import GlobalContext from "../../../context";
 
 function Navbar() {
   const { state, dispatch } = React.useContext(GlobalContext);
-
   const handleDrawer = () => dispatch({ type: "DRAWER_HANDLER" });
-  const themeSwitch = () => dispatch({ type: "THEME_SWITCH" });
+
+  React.useEffect(() => {
+    const userInfo = localStorage.getItem("user");
+    if (userInfo) {
+      const userData = JSON.parse(userInfo);
+      dispatch({ type: "CHANGE_USER", payload: userData });
+    }
+  }, []);
+
+  React.useEffect(() => {
+    
+  },[])
 
   return (
     <AppBar
@@ -81,7 +89,7 @@ function Navbar() {
                     textDecoration: "none",
                   }}
                 >
-                  Hossein-Kamari
+                  {state.user.name ?? "-"}
                 </Typography>
                 <Box sx={{ display: "flex", columnGap: 0.8 }}>
                   <Typography
@@ -97,7 +105,7 @@ function Navbar() {
                       textDecoration: "none",
                     }}
                   >
-                    24
+                    {state.user.age ?? ""}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -112,7 +120,7 @@ function Navbar() {
                       textDecoration: "none",
                     }}
                   >
-                    years
+                    {state.user.age && state.user.age.length > 0 && "years"}
                   </Typography>
                 </Box>
               </Box>
@@ -120,23 +128,13 @@ function Navbar() {
                 <Tooltip title="Account">
                   <IconButton sx={{ p: 0 }}>
                     <Avatar
-                      alt="Remy Sharp"
+                      alt={state.user.name ? state.user.name : ""}
                       src="/static/images/avatar/2.jpg"
                     />
                   </IconButton>
                 </Tooltip>
               </Box>
             </Box>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={themeSwitch}
-              color="inherit"
-            >
-              {state.isDarkMode ? <WbSunnyIcon /> : <BedtimeIcon />}
-            </IconButton>
           </Box>
         </Toolbar>
       </Container>

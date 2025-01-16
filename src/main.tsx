@@ -4,11 +4,16 @@ import "./index.css";
 import "./languages/configure";
 import Routing from "./routes";
 import { BrowserRouter } from "react-router";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <Routing />
+      <QueryClientProvider client={queryClient}>
+        <Routing />
+      </QueryClientProvider>
     </BrowserRouter>
   </StrictMode>
 );

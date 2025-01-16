@@ -13,7 +13,7 @@ function App() {
     <ThemeProvider theme={state.isDarkMode ? darkTheme : lightTheme}>
       <main>
         <Navbar />
-        <Box display={"flex"} position={"relative"}>
+        <Box display={"flex"} position={"relative"} height={"100%"}>
           <Sidebar />
           <Outlet />
         </Box>

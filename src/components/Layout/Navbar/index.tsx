@@ -129,7 +129,7 @@ function Navbar() {
                   </Typography>
                 </Box>
               </Box>
-              <Box sx={{ display: { xs: "none", md: "block" } }}>
+              <Box sx={{ display: "block" }}>
                 <Tooltip title="Account">
                   <IconButton sx={{ p: 0 }}>
                     <Avatar

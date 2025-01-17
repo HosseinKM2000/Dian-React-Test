@@ -5,11 +5,12 @@ import LanguageButton from "../../components/Profile/LanguageButton";
 import ThemeButton from "../../components/Profile/ThemeButton";
 import GlobalContext from "../../context";
 import { ProfileFormType } from "../../types";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const { state, dispatch } = React.useContext(GlobalContext);
-
   const { register, handleSubmit, watch, setValue } =
     useForm<ProfileFormType>();
 
@@ -17,7 +18,11 @@ const Profile = () => {
   const onSubmit: SubmitHandler<ProfileFormType> = (data) => {
     dispatch({
       type: "CHANGE_USER",
-      payload: { ...data, isDark: state.user.isDark },
+      payload: {
+        ...data,
+        isDark: state.user.isDark,
+        isPersian: state.user.isPersian,
+      },
     });
   };
 
@@ -42,27 +47,32 @@ const Profile = () => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box display={"flex"} flexDirection={"column"} rowGap={5}>
-          <Typography variant="h6">
-            In this page you can change your information .
-          </Typography>
+          <Typography variant="h6">{t("profile.guid_text")}</Typography>
           <TextField
             id="name"
-            label="name"
+            placeholder={t("profile.name")}
             variant="standard"
             {...register("name", { required: true })}
             sx={{ width: "100%" }}
           />
           <TextField
             id="age"
-            label="age"
+            placeholder={t("profile.age")}
             type="number"
             variant="standard"
             {...register("age", { required: true })}
             sx={{ width: "100%" }}
           />
           <Box display={"flex"} justifyContent={"space-between"}>
-            <ThemeButton register={register} defaultValue={state.user.isDark} />
+            <ThemeButton
+              state={state}
+              dispatch={dispatch}
+              register={register}
+              defaultValue={state.user.isDark}
+            />
             <LanguageButton
+              state={state}
+              dispatch={dispatch}
               register={register}
               defaultValue={state.user.isPersian}
             />
@@ -73,7 +83,7 @@ const Profile = () => {
             sx={{ paddingX: "5rem" }}
             disabled={!watch("name") || !watch("age")}
           >
-            Save
+            {t("profile.edit")}
           </Button>
         </Box>
       </form>

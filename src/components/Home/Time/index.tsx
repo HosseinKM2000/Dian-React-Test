@@ -5,8 +5,10 @@ import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { getCurrentTimeInfo } from "../../../functions";
 import { TimeInfoType } from "../../../types/functions";
+import { useTranslation } from "react-i18next";
 
 const Time = () => {
+  const { t } = useTranslation();
   const [currentTimeInfo, setCurrentTimeInfo] = React.useState<TimeInfoType>();
   const iconStyle = { width: "5rem", height: "5rem", margin: "0.5rem 0" };
 
@@ -30,7 +32,7 @@ const Time = () => {
         )}
       </Box>
       <Typography variant="h3" fontWeight={600}>
-        Good {currentTimeInfo?.timeOfDay}{" "}
+        {t(`home.${currentTimeInfo?.timeOfDay}`)}{" "}
       </Typography>
       <Typography variant="h5">
         {currentTimeInfo?.currentDate} {currentTimeInfo?.currentTime}

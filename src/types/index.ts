@@ -1,7 +1,3 @@
-export interface User {
-  name: string | null;
-  theme: string | null;
-}
 export interface TodoType {
   id: string;
   value: string;

@@ -1,6 +1,7 @@
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useGeocoding } from "../../Hooks";
+import { useTranslation } from "react-i18next";
 
 type Inputs = {
   city: string;
@@ -20,13 +21,13 @@ const Weather = () => {
     isError,
     mutateAsync: getGeocodingMutate,
   } = useGeocoding();
-
+  const { t } = useTranslation();
   // Update the URL when the form is submitted
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const url = `${process.env.OPEN_CAGE_URL}?q=${data.city}&key=${process.env.OPEN_CAGE_API_KEY}&no_annotations=1`;
     await getGeocodingMutate(url);
   };
-  console.log(data?.firstData);
+
   return (
     <Box
       width={"100%"}
@@ -43,10 +44,10 @@ const Weather = () => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box display={"flex"} flexDirection={"column"} rowGap={5}>
-          <Typography variant="h6">Please Enter City Name</Typography>
+          <Typography variant="h6">{t("weather.guid_text")}</Typography>
           <TextField
             id="city"
-            label="City"
+            label= {t("weather.city")}
             variant="standard"
             {...register("city", { required: "City name is required" })}
             sx={{ width: "18rem" }}
@@ -59,23 +60,21 @@ const Weather = () => {
             sx={{ paddingX: "5rem" }}
             disabled={!watch("city")}
           >
-            Search
+            {t("weather.search")}
           </Button>
         </Box>
       </form>
 
       {/* Render loading, error, or data */}
       {isError && (
-        <Typography variant="body1">
-          Error in get city weather condition
-        </Typography>
+        <Typography variant="body1">{t("weather.no_result")}</Typography>
       )}
       {isLoading && <Typography variant="body1">Loading...</Typography>}
       {data?.firstData && data?.secondData && (
         <Box display={"flex"} flexDirection={"column"} rowGap={3}>
           <Box display={"flex"} gap={2}>
             <Typography variant="h5" fontWeight={900}>
-              Temperature:
+              {t("weather.temperature")}
             </Typography>
             <Typography variant="h6">
               {data?.secondData?.current_weather?.temperature ?? "N/A"}{" "}
@@ -84,7 +83,7 @@ const Weather = () => {
           </Box>
           <Box display={"flex"} gap={2}>
             <Typography variant="h5" fontWeight={900}>
-              Weather Code:
+              {t("weather.weather_code")}
             </Typography>
             <Typography variant="h6">
               {data?.secondData?.current_weather?.weathercode ?? "N/A"}{" "}
@@ -93,7 +92,7 @@ const Weather = () => {
           </Box>
           <Box display={"flex"} gap={2}>
             <Typography variant="h5" fontWeight={900}>
-              Wind Direction:
+              {t("weather.wind_direction")}
             </Typography>
             <Typography variant="h6">
               {data?.secondData?.current_weather?.winddirection ?? "N/A"}{" "}
@@ -102,7 +101,7 @@ const Weather = () => {
           </Box>
           <Box display={"flex"} gap={2}>
             <Typography variant="h5" fontWeight={900}>
-              Wind Speed:
+              {t("weather.wind_speed")}
             </Typography>
             <Typography variant="h6">
               {data?.secondData?.current_weather?.windspeed ?? "N/A"}{" "}
@@ -113,7 +112,7 @@ const Weather = () => {
       )}
       {data?.firstData && data?.firstData.length === 0 && (
         <Typography variant="body1" color="warning">
-          No results found !
+          {t("weather.error")}
         </Typography>
       )}
     </Box>

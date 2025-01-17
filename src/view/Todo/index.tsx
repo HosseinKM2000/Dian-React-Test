@@ -1,9 +1,9 @@
 import { useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
-import Create from "../../components/Todo/Create";
 import { useEffect, useState } from "react";
-import { TodoType } from "../../types";
+import Create from "../../components/Todo/Create";
 import List from "../../components/Todo/List";
+import { TodoType } from "../../types";
 
 const Todo = () => {
   const theme = useTheme();

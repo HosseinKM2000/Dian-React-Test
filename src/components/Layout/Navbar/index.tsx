@@ -9,9 +9,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 import GlobalContext from "../../../context";
+import i18n from "../../../languages/configure";
 
 function Navbar() {
+  const { t } = useTranslation();
   const { state, dispatch } = React.useContext(GlobalContext);
   const handleDrawer = () => dispatch({ type: "DRAWER_HANDLER" });
 
@@ -24,8 +27,8 @@ function Navbar() {
   }, []);
 
   React.useEffect(() => {
-    
-  },[])
+    i18n.changeLanguage(state.user.isPersian ? "fa" : "en");
+  }, [state.user.isPersian]);
 
   return (
     <AppBar
@@ -120,7 +123,9 @@ function Navbar() {
                       textDecoration: "none",
                     }}
                   >
-                    {state.user.age && state.user.age.length > 0 && "years"}
+                    {state.user.age &&
+                      state.user.age.length > 0 &&
+                      t("home.years")}
                   </Typography>
                 </Box>
               </Box>

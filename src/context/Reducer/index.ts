@@ -1,11 +1,13 @@
-import { mainReducerType } from "../../types/context";
+import { MainReducerType } from "../../types/context";
 
-const mainReducer: mainReducerType = (state, action) => {
+const mainReducer: MainReducerType = (state, action) => {
   switch (action.type) {
     case "DRAWER_HANDLER":
       return { ...state, drawerStatus: !state.drawerStatus };
     case "THEME_SWITCH":
       return { ...state, user: { ...state.user, isDark: action.payload } };
+    case "LANGUAGE_SWITCH":
+      return { ...state, user: { ...state.user, isPersian: action.payload } };
     case "CHANGE_USER": {
       localStorage.setItem(
         "user",

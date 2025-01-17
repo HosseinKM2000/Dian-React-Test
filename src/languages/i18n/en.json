@@ -4,5 +4,42 @@
       "todoList": "Todo List",
       "weather": "Weather",
       "profile": "Profile"
+    },
+    "home": {
+      "hello_dear" : "Hello Dear",
+      "morning" : "Good Morning",
+      "noon" : "Good Noon",
+      "afternoon" : "Good Afternoon",
+      "evening" : "Good Evening",
+      "night" : "Good night",
+      "guid_text": "Please Register Your Name For Future Visits .",
+      "your_name": "Your Name",
+      "save": "Save",
+      "years": "Years"
+    },
+    "todo" : {
+      "guid_text" : "Please Enter Something Todo .",
+      "todo" : "Todo",
+      "add" : "Add",
+      "warning" : "Todo can't be empty !"
+    },
+    "weather" : {
+      "guid_text" : "Please Enter City Name .",
+      "city" : "City",
+      "search" : "Search",
+      "temperature" : "Temperature",
+      "weather_code" : "Weather Code",
+      "wind_direction" : "Wind Direction",
+      "wind_speed" : "Wind Speed",
+      "no_result" : "No results found !",
+      "error" : "Error in get city weather condition"
+    },
+    "profile" : {
+      "guid_text" : "In this page you can change your information .",
+      "name" : "Name",
+      "age" : "Age",
+      "en" : "en",
+      "fa" : "fa",
+      "edit" : "Edit"
     }
   }

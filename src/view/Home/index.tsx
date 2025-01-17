@@ -1,19 +1,23 @@
 import { Button, TextField, Typography, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import Greeting from "../../components/Home/Greeting";
 import Time from "../../components/Home/Time";
+import { useTranslation } from "react-i18next";
+import GlobalContext from "../../context";
 
 const Home = () => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const theme = useTheme();
+  const { t } = useTranslation();
+  const { state, dispatch } = React.useContext(GlobalContext);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const saveName = () => {
     if (inputRef.current?.value && inputRef.current?.value?.length > 3) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ name: inputRef.current?.value })
-      );
+      dispatch({
+        type: "CHANGE_USER",
+        payload: { name: inputRef.current.value },
+      });
     }
   };
 
@@ -45,23 +49,26 @@ const Home = () => {
         width={"100%"}
         rowGap={2}
       >
-        <Typography variant="subtitle1">
-          Please Register Your Name For Future Visits .
-        </Typography>
-        <TextField
-          id="name"
-          label="Your Name"
-          variant="standard"
-          inputRef={inputRef}
-          sx={{ width: "18rem" }}
-        />
-        <Button
-          variant="contained"
-          onClick={saveName}
-          sx={{ paddingX: "5rem" }}
-        >
-          save
-        </Button>
+        {state.user.name.length === 0 && (
+          <>
+            {" "}
+            <Typography variant="subtitle1">{t("home.guid_text")}</Typography>
+            <TextField
+              id="name"
+              label={t("home.your_name")}
+              variant="standard"
+              inputRef={inputRef}
+              sx={{ width: "18rem" }}
+            />
+            <Button
+              variant="contained"
+              onClick={saveName}
+              sx={{ paddingX: "5rem" }}
+            >
+              {t("home.save")}
+            </Button>
+          </>
+        )}
       </Box>
     </Box>
   );

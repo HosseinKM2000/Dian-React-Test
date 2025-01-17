@@ -10,21 +10,29 @@ export interface ChangeUserPayloadType {
   isPersian?: boolean;
 }
 
-interface drawerHandler {
+interface DrawerHandler {
   type: "DRAWER_HANDLER";
 }
-interface themeSwitch {
+interface ThemeSwitch {
   type: "THEME_SWITCH";
   payload: boolean;
 }
-interface changeUser {
+interface LanguageSwitch {
+  type: "LANGUAGE_SWITCH";
+  payload: boolean;
+}
+interface ChangeUser {
   type: "CHANGE_USER";
   payload: ChangeUserPayloadType;
 }
 
-export type ActionType = drawerHandler | themeSwitch | changeUser;
+export type ActionType =
+  | DrawerHandler
+  | ThemeSwitch
+  | ChangeUser
+  | LanguageSwitch;
 
-export type mainReducerType = (
+export type MainReducerType = (
   state: ContextType,
   action: ActionType
 ) => ContextType;
